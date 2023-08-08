@@ -1,0 +1,54 @@
+{
+  "project_info": {
+    "project_number": "1025732640895",
+    "project_id": "giveit-takeit",
+    "storage_bucket": "giveit-takeit.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1025732640895:android:993ed9dae212e555343f4a",
+        "android_client_info": {
+          "package_name": "com.example.giveit_takeit"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1025732640895-rrifuv58qsahmjen7bhd5cktg92foo1g.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.giveit_takeit",
+            "certificate_hash": "38983250261c8503cd96475224e6cb2b58fbf0a7"
+          }
+        },
+        {
+          "client_id": "1025732640895-d7042a5prhpfd0lvo2rkvl5k5n3t75ch.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCq1aoTH_yEduSHH_7g9xgFAiYQP_jk3Tk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1025732640895-ar17ltvm09qol3g8v5l0b0ns14n9svkc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1025732640895-qq5b7rdghcjqpm3ng6d8mg54bnnqg58n.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.giveitTakeit.RunnerTests"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
