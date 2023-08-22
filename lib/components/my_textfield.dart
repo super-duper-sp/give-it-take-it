@@ -11,6 +11,8 @@ class MyTextField extends StatelessWidget {
     required this.obscureText,
   });
 
+
+
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -20,14 +22,16 @@ class MyTextField extends StatelessWidget {
         obscureText: obscureText,
         decoration: InputDecoration(
           enabledBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.white )
+              borderSide: BorderSide(color: Color(0xffEDA47) )
           ),
           focusedBorder: OutlineInputBorder(
-              borderSide: BorderSide(color: Colors.grey.shade400)
+              borderSide: BorderSide(color: Colors.orangeAccent.shade400)
           ),
-          fillColor: Colors.grey.shade200,
+          fillColor: Color(0xffFAE5D2),
           filled: true,
           hintText: hintText,
+            hintStyle: TextStyle(color: Color(0xffEDA47E) , fontWeight: FontWeight.normal),
+            //labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.normal)
         ),
       ),
     );

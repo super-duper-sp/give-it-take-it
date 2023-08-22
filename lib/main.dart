@@ -1,6 +1,9 @@
 
 import 'package:giveit_takeit/pages/auth_page.dart';
 
+import 'package:giveit_takeit/pages/splash_page.dart';
+
+
 import 'firebase_options.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
