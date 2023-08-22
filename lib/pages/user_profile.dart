@@ -359,10 +359,10 @@ class _UserProfileState extends State<UserProfile> {
                                     child: Padding(
                                       padding: const EdgeInsets.all(8.0),
                                       child: Text(
-                                        "ok",
+                                        "$email",
                                         textAlign: TextAlign.justify,
                                         overflow: TextOverflow.ellipsis,
-                                        style: TextStyle(fontSize: 15.0),
+                                        style: TextStyle(fontSize: 11.0,fontWeight: FontWeight.bold ),
                                         maxLines: 2,),
                                     )
                                   ),
@@ -371,7 +371,7 @@ class _UserProfileState extends State<UserProfile> {
 
                                  Padding(
                                    padding: const EdgeInsets.only(left: 10),
-                                   child: Text("BIO" ,textAlign: TextAlign.left, style: TextStyle(fontSize: 12 ,fontWeight: FontWeight.bold )),
+                                   child: Text("BIO" ,textAlign: TextAlign.left, style: TextStyle(fontSize: 11 ,fontWeight: FontWeight.bold )),
                                  ),
 
 
@@ -417,10 +417,12 @@ class _UserProfileState extends State<UserProfile> {
                                             bio!,
                                             textAlign: TextAlign.justify,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(fontSize: 10.0),
-                                            maxLines: 2,),
+                                            style: TextStyle(fontSize: 14.0,color: Color(0xffEDA47E),fontWeight: FontWeight.bold),
+                                            maxLines: 5,),
                                         )
                                     ),
+
+
 
 
                                         ],
@@ -428,6 +430,21 @@ class _UserProfileState extends State<UserProfile> {
                                     ),
                                   ),
 
+                                  Center(
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                      children: [
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10,top: 5),
+                                          child: Text("Age: $age" ,textAlign: TextAlign.left, style: TextStyle(fontSize: 15 ,fontWeight: FontWeight.bold )),
+                                        ),
+                                        Padding(
+                                          padding: const EdgeInsets.only(left: 10,top: 5),
+                                          child: Text("YoB: $byear" ,textAlign: TextAlign.left, style: TextStyle(fontSize: 15 ,fontWeight: FontWeight.bold )),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
 
 
                                 ],

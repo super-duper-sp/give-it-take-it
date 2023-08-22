@@ -21,7 +21,7 @@ class _PostSearchState extends State<PostSearch> {
         .then((QuerySnapshot snapshot) {
 
       setState(() {
-        _searchResults = snapshot.docs.map((doc) => Post(Question: doc['Question'], CreateAt: doc['Answer'])).toList();
+        _searchResults = snapshot.docs.map((doc) => (Post(Question: doc['Question'], CreateAt: doc['Answer'] ,questionId: doc['questionId']))).toList();
       });
     }).catchError((error) {
       print("Error searching posts: $error");

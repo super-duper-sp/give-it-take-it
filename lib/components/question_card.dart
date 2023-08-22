@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
+import '../pages/Question_detail_page.dart';
+
 
 class QuestionCard extends StatefulWidget {
   const QuestionCard({super.key});
@@ -44,35 +46,49 @@ class _QuestionCardState extends State<QuestionCard> {
               return
                // title: Text(data['Question']),
                 //subtitle: Text(data['subtitle']),
-                Container(
-                    margin: EdgeInsets.all(4),
-                    width: 190,
-                    height: 70,
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            QuestionDetailPage(questionId: data['questionId']),
                       ),
-                      shadows: [
-                        BoxShadow(
-                          color: Color(0x194C4844),
-                          blurRadius: 64,
-                          offset: Offset(0, 14),
-                          spreadRadius: 0,
-                        )
-                      ],
-                    ),
-                    child:Padding(
-                      padding: const EdgeInsets.all(8.0),
-                      child: Center(
-                        child: Text(
-                          data['Question'],
-                          textAlign: TextAlign.justify,
-                          overflow: TextOverflow.ellipsis,
-                          style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),
-                          maxLines: 3,),
+                    );
+                  },
+
+                  child: Container(
+                      margin: EdgeInsets.all(4),
+                      width: 190,
+                      height: 70,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        shadows: [
+                          BoxShadow(
+                            color: Color(0x194C4844),
+                            blurRadius: 64,
+                            offset: Offset(0, 14),
+                            spreadRadius: 0,
+                          )
+                        ],
                       ),
-                    )
+
+
+                      child:Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: Center(
+                          child: Text(
+                            data['Question'],
+                            textAlign: TextAlign.justify,
+                            overflow: TextOverflow.ellipsis,
+                            style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),
+                            maxLines: 3,),
+                        ),
+                      )
+                  ),
                 );
 
             },
