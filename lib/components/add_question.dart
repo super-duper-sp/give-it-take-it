@@ -62,6 +62,10 @@ class _AddQuestionState extends State<AddQuestion> {
       });
     }
 
+    QuestionController.clear();
+    AnswerController.clear();
+    selectedValues.clear();
+
   }
 
 
