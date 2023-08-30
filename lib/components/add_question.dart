@@ -53,11 +53,11 @@ class _AddQuestionState extends State<AddQuestion> {
         'createAt': Timestamp.now(),
       }).then((_) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Items added to Firestore')),
+          SnackBar(content: Text('Question Added ')),
         );
       }).catchError((error) {
         ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(content: Text('Failed to add items: $error')),
+          SnackBar(content: Text('Failed to Add your Question: $error')),
         );
       });
     }
@@ -98,108 +98,122 @@ class _AddQuestionState extends State<AddQuestion> {
 
 
   @override
+  void dispose() {
+    // Dispose the controllers when the widget is removed from the widget tree
+    QuestionController.dispose();
+    AnswerController.dispose();
+    SeletedCategoryController.dispose();
+    super.dispose();
+  }
+
+
+
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
 
-      body: Center(
+      body: SingleChildScrollView(
+        child: Center(
 
-          child: Column(
+            child: Column(
 
-              children: [
+                children: [
 
-                Container(
-                  padding: EdgeInsets.only(top:30,left: 10,right: 10),
+                  Container(
+                      padding: EdgeInsets.only(top:30,left: 10,right: 10,bottom: 10),
 
 
-                  child: Center(
-                    child: TextField(
-                      controller: QuestionController,
-                      keyboardType: TextInputType.multiline,
-                      maxLength: null,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffEDA47) )
+                    child: Center(
+                      child: TextField(
+                        controller: QuestionController,
+                        keyboardType: TextInputType.multiline,
+                        maxLength: null,
+                        maxLines: null,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xffF8F8F8) )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.purple)
+                          ),
+                          fillColor: Color(0xffDFD8FB),
+                          filled: true,
+                          hintText: "Enter your Question",
+                          hintStyle: TextStyle(color: Color(0xff242424) , fontWeight: FontWeight.normal),
+                          //labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.normal)
                         ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.orangeAccent.shade400)
-                        ),
-                        fillColor: Color(0xffFAE5D2),
-                        filled: true,
-                        hintText: "Enter your Question",
-                        hintStyle: TextStyle(color: Color(0xffEDA47E) , fontWeight: FontWeight.normal),
-                        //labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.normal)
                       ),
                     ),
                   ),
-                ),
+                  SizedBox(height: 20),
 
 
+                  Padding(
+                    padding: EdgeInsets.only(top:20,left: 10,right: 10),
+                    child: Container(
 
-                Padding(
-                  padding: EdgeInsets.only(top:20,left: 10,right: 10),
-                  child: Container(
+                       child: Column(
+                         mainAxisAlignment: MainAxisAlignment.center,
+                         children: <Widget>[
+                           MultiSelectDialogField(
+                             items: items
+                                 .map((item) => MultiSelectItem(item, item))
+                                 .toList(),
+                             listType: MultiSelectListType.CHIP,
+                             onConfirm: (selectedItems) {
+                               selectedValues = selectedItems.map((e) => e.toString()).toList();
+                             },
+                           ),
+                           SizedBox(height: 20),
+                         ],
+                       )
 
-                     child: Column(
-                       mainAxisAlignment: MainAxisAlignment.center,
-                       children: <Widget>[
-                         MultiSelectDialogField(
-                           items: items
-                               .map((item) => MultiSelectItem(item, item))
-                               .toList(),
-                           listType: MultiSelectListType.CHIP,
-                           onConfirm: (selectedItems) {
-                             selectedValues = selectedItems.map((e) => e.toString()).toList();
-                           },
-                         ),
-                         SizedBox(height: 20),
-                       ],
-                     )
-
+                    ),
                   ),
-                ),
 
 
 
-                Container(
-                  padding: EdgeInsets.only(top:30,left: 10,right: 10),
+                  Container(
+                    padding: EdgeInsets.only(top:30,left: 10,right: 10),
 
 
-                  child: Center(
-                    child: TextField(
-                      controller: AnswerController,
-                      keyboardType: TextInputType.multiline,
-                      maxLength: null,
-                      maxLines: null,
-                      decoration: InputDecoration(
-                        enabledBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Color(0xffEDA47) )
+                    child: Center(
+                      child: TextField(
+                        controller: AnswerController,
+                        keyboardType: TextInputType.multiline,
+                        maxLength: null,
+                        maxLines: null,
+                        decoration: InputDecoration(
+                          enabledBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Color(0xffF8F8F8) )
+                          ),
+                          focusedBorder: OutlineInputBorder(
+                              borderSide: BorderSide(color: Colors.purple)
+                          ),
+                          fillColor: Color(0xffDFD8FB),
+                          filled: true,
+                          hintText: "Asnwer your Question",
+                          hintStyle: TextStyle(color: Color(0xff242424) , fontWeight: FontWeight.normal),
+                          //labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.normal)
                         ),
-                        focusedBorder: OutlineInputBorder(
-                            borderSide: BorderSide(color: Colors.orangeAccent.shade400)
-                        ),
-                        fillColor: Color(0xffFAE5D2),
-                        filled: true,
-                        hintText: "Asnwer your Question",
-                        hintStyle: TextStyle(color: Color(0xffEDA47E) , fontWeight: FontWeight.normal),
-                        //labelStyle: TextStyle(color: Colors.red, fontWeight: FontWeight.normal)
                       ),
                     ),
                   ),
-                ),
 
-              SizedBox(height: 30,),
+                SizedBox(height: 30,),
 
-              MyButton(
-                text: 'Ask Question or Post',
-                onTap: addall,
-                  ),
-
+                MyButton(
+                  text: 'Ask Question or Post',
+                  onTap: addall,
+                    ),
 
 
-              ],
-          )
 
+                ],
+            )
+
+        ),
       ),
 
     );

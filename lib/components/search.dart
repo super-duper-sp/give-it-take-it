@@ -2,6 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:giveit_takeit/components/user_question_card.dart';
 
+import '../pages/Question_detail_page.dart';
+
 class PostSearch extends StatefulWidget {
   @override
   _PostSearchState createState() => _PostSearchState();
@@ -76,11 +78,11 @@ class _PostSearchState extends State<PostSearch> {
               controller: _searchController,
               onChanged: _performSearch,
                     textStyle: MaterialStateProperty.all(
-                    const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold)),
+                    const TextStyle(color: Color(0xff242424), fontWeight: FontWeight.bold)),
                     hintText: 'Search ',
-                    hintStyle: MaterialStateProperty.all(const TextStyle(color: Color(0xffEDA47E))),
-                    leading: const Icon(Icons.search,color: Color(0xffEDA47E), size: 30,),
-                    backgroundColor: MaterialStateProperty.all(const Color(0xffFAE5D2)),
+                    hintStyle: MaterialStateProperty.all(const TextStyle(color: Color(0xff242424))),
+                    leading: const Icon(Icons.search,color: Color(0xff242424), size: 30,),
+                    backgroundColor: MaterialStateProperty.all(const Color(0xfff8e9c8)),
                     shadowColor: MaterialStateProperty.all(Colors.orange),
                     shape: MaterialStateProperty.all(const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)),))
             ),
@@ -92,32 +94,43 @@ class _PostSearchState extends State<PostSearch> {
               return
                   // title: Text(_searchResults[index].Question),
                   // subtitle: Text(_searchResults[index].CreateAt),
-                Container(
-                    margin: EdgeInsets.all(4),
-                    width: 100,
-                    height: 70,
-                    decoration: ShapeDecoration(
-                      color: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) =>
+                            QuestionDetailPage(questionId: _searchResults[index].questionId),
                       ),
-                      shadows: [
-                        BoxShadow(
-                          color: Color(0x194C4844),
-                          blurRadius: 64,
-                          offset: Offset(0, 14),
-                          spreadRadius: 1,
-                        )
-                      ],
-                    ),
-                    child:Center(
-                      child: Text(
-                        _searchResults[index].Question,
-                        textAlign: TextAlign.justify,
-                        overflow: TextOverflow.ellipsis,
-                        style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),
-                        maxLines: 3,),
-                    )
+                    );
+                  },
+                  child: Container(
+                      margin: EdgeInsets.all(4),
+                      width: 100,
+                      height: 70,
+                      decoration: ShapeDecoration(
+                        color: Colors.white,
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(10),
+                        ),
+                        shadows: [
+                          BoxShadow(
+                            color: Color(0x194C4844),
+                            blurRadius: 64,
+                            offset: Offset(0, 14),
+                            spreadRadius: 1,
+                          )
+                        ],
+                      ),
+                      child:Center(
+                        child: Text(
+                          _searchResults[index].Question,
+                          textAlign: TextAlign.justify,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),
+                          maxLines: 3,),
+                      )
+                  ),
                 );
             },
           ),

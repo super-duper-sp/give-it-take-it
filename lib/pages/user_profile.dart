@@ -30,20 +30,19 @@ class _UserProfileState extends State<UserProfile> {
   }
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
+  User? user = FirebaseAuth.instance.currentUser;
   final CollectionReference questions = FirebaseFirestore.instance.collection('All Questions');
   final CollectionReference answers = FirebaseFirestore.instance.collection('All Answers');
-  Future<int> getCurrentUserQuestionCount() async {
-    User? user = _auth.currentUser;
-    if (user == null) return 0;
 
-    QuerySnapshot querySnapshot = await questions.where('UserId', isEqualTo: user.uid).get();
+  Future<int> getCurrentUserQuestionCount() async {
+    if (user == null) return 0;
+    QuerySnapshot querySnapshot = await questions.where('UserId', isEqualTo: user?.uid).get();
     return querySnapshot.size;
   }
-  Future<int> getCurrentUserAnswerCount() async {
-    User? user = _auth.currentUser;
-    if (user == null) return 0;
 
-    QuerySnapshot querySnapshot = await answers.where('UserId', isEqualTo: user.uid).get();
+  Future<int> getCurrentUserAnswerCount() async {
+    if (user == null) return 0;
+    QuerySnapshot querySnapshot = await answers.where('UserId', isEqualTo: user?.uid).get();
     return querySnapshot.size;
   }
 
@@ -91,7 +90,7 @@ class _UserProfileState extends State<UserProfile> {
       return MaterialApp(
 
           home: Scaffold(
-            backgroundColor: Color(0xffFCEFE3),
+            backgroundColor: Color(0xffffffff),
             body: SafeArea(
               child: Stack(
                   children:[
@@ -103,13 +102,13 @@ class _UserProfileState extends State<UserProfile> {
                        child: Container(
                          margin: EdgeInsets.all(10),
                          decoration: BoxDecoration(
-                                 color: Colors.white60,
+                                 color: Color(0xffF8F8F8),
                                  borderRadius:  BorderRadius.all(Radius.circular(10)
                                  ),
                                ),
                            child: Padding(
                              padding: const EdgeInsets.all(8.0),
-                             child: UserQuestionCard(),
+                             child: UserQuestionCard(user_Id: user!.uid),
                            )),
 
                         // child: Container(
@@ -153,7 +152,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 60,
                         width: 270,
                         decoration: BoxDecoration(
-                          color: Color(0xffFAE5D2),
+                          color: Color(0xffF8F8F8),
                           borderRadius:  BorderRadius.all(Radius.circular(20)
                           ),
                         ),
@@ -169,7 +168,7 @@ class _UserProfileState extends State<UserProfile> {
                                 height: 40,
                                 width: 120,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffE9913F),
+                                  color: Color(0xffdeecec),
                                   borderRadius:  BorderRadius.all(Radius.circular(10)
                                   ),
                                 ),
@@ -183,7 +182,7 @@ class _UserProfileState extends State<UserProfile> {
                                     } else {
                                       int questionCount = snapshot.data ?? 0;
                                       return Center(
-                                        child:Text("Q: $questionCount" ,style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),
+                                        child:Text("Q: $questionCount" ,style: TextStyle(color: Color(0xff242424),fontSize: 25,fontWeight: FontWeight.bold),
                                         ),
                                       );
                                     }
@@ -201,7 +200,7 @@ class _UserProfileState extends State<UserProfile> {
                                 height: 40,
                                 width: 120,
                                 decoration: BoxDecoration(
-                                  color: Color(0xffE9913F),
+                                  color: Color(0xffdeecec),
                                   borderRadius:  BorderRadius.all(Radius.circular(10)
                                   ),
                                 ),
@@ -215,7 +214,7 @@ class _UserProfileState extends State<UserProfile> {
                                     } else {
                                       int answerCount = snapshot.data ?? 0;
                                       return Center(
-                                        child:Text("A: $answerCount" ,style: TextStyle(color: Colors.white,fontSize: 25,fontWeight: FontWeight.bold),
+                                        child:Text("A: $answerCount" ,style: TextStyle(color: Color(0xff242424),fontSize: 25,fontWeight: FontWeight.bold),
                                         ),
                                       );
                                     }
@@ -236,7 +235,7 @@ class _UserProfileState extends State<UserProfile> {
                           height: 60,
                           width: 70,
                           decoration: BoxDecoration(
-                            color: Color(0xffFAE5D2),
+                            color: Color(0xff242424),
                             borderRadius:  BorderRadius.all(Radius.circular(20)
                             ),
                           ),
@@ -249,7 +248,7 @@ class _UserProfileState extends State<UserProfile> {
                             ),
                             child: ElevatedButton(
                               style: ElevatedButton.styleFrom(
-                                  primary: Color(0xff132D2F),
+                                  primary: Color(0xff242424),
                                   shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
                                   textStyle: TextStyle(
                                       fontSize: 20,
@@ -288,7 +287,7 @@ class _UserProfileState extends State<UserProfile> {
                         height: 200,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          color: Color(0xffFAE5D2),
+                          color: Color(0xffdeecec),
                           borderRadius:  BorderRadius.all( Radius.circular(10)
                           ),
                         ),
@@ -313,10 +312,10 @@ class _UserProfileState extends State<UserProfile> {
                                             color: Colors.white),
                                         boxShadow: [
                                           BoxShadow(
-                                              spreadRadius: 2,
-                                              blurRadius: 10,
-                                              color: Colors.black.withOpacity(0.1),
-                                              offset: Offset(0, 10))
+                                              spreadRadius: 1,
+                                              blurRadius: 4,
+                                              color: Color(0xff242424),
+                                              offset: Offset(0, 2))
                                         ],
                                         borderRadius: BorderRadius.circular(10),
 
@@ -336,7 +335,7 @@ class _UserProfileState extends State<UserProfile> {
                                     style: TextStyle(
                                       fontSize: 20,
                                       fontWeight: FontWeight.bold,
-                                      color: Color(0xff1e0d2d),
+                                      color: Color(0xff242424),
                                     ),
                                   ),
 
@@ -378,7 +377,7 @@ class _UserProfileState extends State<UserProfile> {
 
 
                                   Container(
-                                    height: 80.0,
+
                                     width: 200.0,
 
                                     child: Center(
@@ -396,7 +395,7 @@ class _UserProfileState extends State<UserProfile> {
 
                                       Container(
                                       width: 190,
-                                      height: 85,
+
                                       decoration: ShapeDecoration(
                                         color: Colors.white,
                                         shape: RoundedRectangleBorder(
@@ -404,10 +403,10 @@ class _UserProfileState extends State<UserProfile> {
                                         ),
                                         shadows: [
                                           BoxShadow(
-                                            color: Color(0x194C4844),
-                                            blurRadius: 64,
-                                            offset: Offset(0, 14),
-                                            spreadRadius: 0,
+                                            color: Color(0xff242424),
+                                            blurRadius: 1,
+                                            offset: Offset(0, 2),
+                                            spreadRadius: 1,
                                           )
                                         ],
                                       ),
@@ -417,8 +416,9 @@ class _UserProfileState extends State<UserProfile> {
                                             bio!,
                                             textAlign: TextAlign.justify,
                                             overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(fontSize: 14.0,color: Color(0xffEDA47E),fontWeight: FontWeight.bold),
-                                            maxLines: 5,),
+                                            style: TextStyle(fontSize: 14.0,color: Colors.grey,fontWeight: FontWeight.bold),
+                                            maxLines: 5,
+                                            ),
                                         )
                                     ),
 
@@ -463,10 +463,19 @@ class _UserProfileState extends State<UserProfile> {
                     Container(
                         padding: EdgeInsets.only(right:5,bottom:5,top:5),
                         height: 70,
-                        decoration: BoxDecoration(
-                          color: Color(0xffFFFFFF),
-                          borderRadius:  BorderRadius.all( Radius.circular(20),)
-                          ,
+                        decoration: ShapeDecoration(
+                          color: Colors.white,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(16),
+                          ),
+                          shadows: [
+                            BoxShadow(
+                              color: Color(0xffdeecec),
+                              blurRadius: 1,
+                              offset: Offset(0, 2),
+                              spreadRadius: 1,
+                            )
+                          ],
                         ),
                         child:Row(
                           mainAxisAlignment: MainAxisAlignment.end,
@@ -474,7 +483,7 @@ class _UserProfileState extends State<UserProfile> {
                             Text("PROFILE", style: TextStyle(
                               fontSize: 20.0,
                               fontWeight: FontWeight.bold,
-                              color: Color(0xff132D2F),
+                              color: Color(0xff242424),
                             )
                             ),
 
@@ -485,7 +494,7 @@ class _UserProfileState extends State<UserProfile> {
                               height: 60,
                               width: 130,
                               decoration: BoxDecoration(
-                                color: Color(0xffFAE5D2),
+                                color: Color(0xff242424),
                                 borderRadius:  BorderRadius.all(Radius.circular(20)
                                 ),
                               ),
@@ -493,7 +502,7 @@ class _UserProfileState extends State<UserProfile> {
 
                               child: ElevatedButton(
                                 style: ElevatedButton.styleFrom(
-                                    primary: Color(0xff132D2F),
+                                    primary: Color(0xff242424),
                                     shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
                                     textStyle: TextStyle(
                                         fontSize: 20,

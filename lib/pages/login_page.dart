@@ -69,11 +69,11 @@ class _LoginPageState extends State<LoginPage> {
       context: context,
       builder: (context){
           return AlertDialog(
-            backgroundColor: Colors.blue,
+            backgroundColor: Color(0xfff8e9c8),
             title:Center(
               child:  Text(
                  message ,
-                 style: const TextStyle(color: Colors.white),
+                 style: const TextStyle(color: Color(0xff242424)),
                ),
             ),
            );
@@ -104,11 +104,17 @@ class _LoginPageState extends State<LoginPage> {
 //     );
 //   }
 // '''
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFCEFE3),
+      backgroundColor: Colors.white,
       body: SafeArea(
         child: Center(
           child: SingleChildScrollView(
@@ -116,28 +122,30 @@ class _LoginPageState extends State<LoginPage> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
 
-                const SizedBox(height: 10,),
 
-                Container(
-                  height: 190,
-                  width: 230,
-                  decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage(
-                          'assets/images/logo.png'),
-                      fit: BoxFit.fill,
+
+                Center(
+                  child: Container(
+                    height: 350,
+                    width: 350,
+                    decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage(
+                            'assets/images/logo.gif'),
+                        fit: BoxFit.fill,
+                      ),
+
                     ),
-
                   ),
                 ),
-                const SizedBox(height: 20,),
+                const SizedBox(height: 10,),
 
-                Text('Give it-Take it',style: TextStyle(
-                  color: Colors.black,
-                  fontSize: 45,fontWeight: FontWeight.bold,
-                ),),
+                // Text('Give it-Take it',style: TextStyle(
+                //   color: Color(0xff242424),
+                //   fontSize: 45,fontWeight: FontWeight.bold,
+                // ),),
 
-                const SizedBox(height: 25,),
+
 
                 MyTextField(controller: _emailController,
                 hintText: 'Username',
@@ -167,7 +175,7 @@ class _LoginPageState extends State<LoginPage> {
                         },
                         child: Text(
                           'Forgot Password?',
-                          style: TextStyle(color: Color(0xffEDA47E),fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Color(0xff242424),fontWeight: FontWeight.bold),
                         ),
                       ),
                     ],
@@ -190,21 +198,21 @@ class _LoginPageState extends State<LoginPage> {
                     Expanded(
                       child: Divider(
                         thickness: 1,
-                        color: Colors.white,
+                        color: Colors.cyan,
                     )),
 
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 10.0),
                       child: Text(
                         'Or continue with',
-                        style: TextStyle(color: Color(0xffEDA47E), fontWeight: FontWeight.bold),
+                        style: TextStyle(color: Color(0xff242424), fontWeight: FontWeight.bold),
                       ),
                     ),
 
                     Expanded(
                         child: Divider(
                           thickness: 1,
-                          color: Colors.white,
+                          color: Colors.cyan,
                         )),
 
                   ],
@@ -233,7 +241,7 @@ class _LoginPageState extends State<LoginPage> {
                     const SizedBox(width: 4,),
                     GestureDetector(
                       onTap: widget.onTap,
-                        child: Text('Register now', style: TextStyle(color: Color(0xffEDA47E), fontWeight: FontWeight.bold),)),
+                        child: Text('Register now', style: TextStyle(color: Color(0xff242424), fontWeight: FontWeight.bold),)),
                   ],
                 )
               ],

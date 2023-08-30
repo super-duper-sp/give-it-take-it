@@ -13,8 +13,10 @@ class Post {
   Post({required this.Question, required this.CreateAt, required this.questionId});
 }
 
-class UserQuestionCard extends StatelessWidget {
-   UserQuestionCard({super.key});
+ class UserQuestionCard extends StatelessWidget {
+  final String user_Id ;
+
+  UserQuestionCard({required this.user_Id });
 
   final FirebaseAuth _auth = FirebaseAuth.instance;
 
@@ -23,7 +25,7 @@ class UserQuestionCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return StreamBuilder<QuerySnapshot>(
-      stream: _firestore.collection('All Questions').where('UserId', isEqualTo: _auth.currentUser!.uid).snapshots(),
+      stream: _firestore.collection('All Questions').where('UserId', isEqualTo: user_Id).snapshots(),
       builder: (context, snapshot) {
         if (snapshot.hasData) {
           List<Post> posts = [];
@@ -59,7 +61,7 @@ class UserQuestionCard extends StatelessWidget {
                         ),
                         shadows: [
                           BoxShadow(
-                            color: Color(0x194C4844),
+                            color: Color(0xffdeecec),
                             blurRadius: 64,
                             offset: Offset(0, 14),
                             spreadRadius: 0,

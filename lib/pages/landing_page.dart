@@ -19,9 +19,7 @@ class LandingPage extends StatefulWidget {
 class _LandingPageState extends State<LandingPage> {
 
 
-  handleSearch(){
 
-  }
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
@@ -29,146 +27,80 @@ class _LandingPageState extends State<LandingPage> {
 
   @override
   Widget build(BuildContext context) {
+//0xffFCEFE3
+    return   Scaffold(
+          backgroundColor: Colors.white,
+          body: SafeArea(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start, // Align children to the left
+              children: [
+                SizedBox(height: 8),
 
-    return  MaterialApp(
-
-        home: Scaffold(
-          backgroundColor: Color(0xffFCEFE3),
-          body: Stack(
-              children:[
-
-                // SafeArea(
-                //   child: Padding(
-                //     padding: const EdgeInsets.only(right: 20 ,top: 10),
-                //     child: Row(
-                //       mainAxisAlignment: MainAxisAlignment.end,
-                //       children: [
-                //
-                //         Container(
-                //           height: 50,
-                //             width: 55,
-                //             decoration: BoxDecoration(
-                //               color: Colors.white,
-                //               borderRadius: BorderRadius.circular(15)
-                //             ),
-                //             child: Icon(Icons.notifications,size:35,
-                //                 color: Colors.black),
-                //         )// NOTIFICATION BAR
-                //
-                //       ],
-                //     ),
-                //   ),
-                // ),
-
-
-
-                  Padding(
-                    padding: const EdgeInsets.only(left: 10),
-                    child: SafeArea(child: Text("Categories" , style: TextStyle(fontSize: 20 ,fontWeight: FontWeight.bold ),)),
-                  ),
-
-
-
-
-                //CATEGORY CARDS
                 Padding(
-                  padding: const EdgeInsets.only(top: 70),
-                  child: Container(
-                    child: CategoryCards(),
+                  padding: const EdgeInsets.only(left: 10),
+                  child: Text(
+                    "Categories",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                   ),
                 ),
 
+                SizedBox(height: 2),
+                //CATEGORY CARDS
+                Container(
+                  child: CategoryCards(),
+                ),
 
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Color(0xffF8F8F8),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: PostSearch(),
+                    ),
+                  ),
+                ), //SEARCH & FILTER
 
+                Padding(
+                  padding: const EdgeInsets.only(left: 22),
+                  child: Text(
+                    "All Questions",
+                    style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                  ),
+                ),
 
-                    Padding(
-                      padding: const EdgeInsets.only( left: 8 ,right:8 ,top: 440)
-                      ,
-                      child: Container(
-                          width: 380,
-                          height :490,
-                           margin: EdgeInsets.all(10),
-                            decoration: BoxDecoration(
-                             color: Color(0xffFAE5D2),
-                            borderRadius:  BorderRadius.all(Radius.circular(10)
-                                 ),
-                                ),
-                          child: Padding(
-                              padding: const EdgeInsets.all(8.0),
-                              child: QuestionCard(),
-                                )
+                Expanded(
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 8, right: 8),
+                    child: Container(
+
+                      margin: EdgeInsets.all(10),
+                      decoration: BoxDecoration(
+                        color: Color(0xffF8F8F8),
+                        borderRadius: BorderRadius.all(Radius.circular(10)),
+                      ),
+                      child: Padding(
+                        padding: const EdgeInsets.all(8.0),
+                        child: QuestionCard(),
                       ),
                     ),
-
-
-
-                Padding(
-                  padding: const EdgeInsets.only( left: 10 ,right:10 ,top: 230),
-                  child: Row(
-
-                    mainAxisAlignment: MainAxisAlignment.spaceAround,
-                    children: [
-
-
-                      SizedBox(height: 35,),
-
-
-
-                      Container(
-                          width: 380,
-                          height :180,
-                          decoration: BoxDecoration(
-                            color: Color(0xffFAE5D2),
-                            borderRadius:  BorderRadius.all(Radius.circular(10)
-                            ),
-                          ),
-                          child: PostSearch()
-                      ),
-
-                      // Container(
-                      //     width: 290.30,
-                      //     height: 47.27,
-                      //   child: SearchBar(
-                      //
-                      //           textStyle: MaterialStateProperty.all(
-                      //           const TextStyle(color: Colors.teal, fontWeight: FontWeight.bold)),
-                      //           hintText: 'Search ',
-                      //           hintStyle: MaterialStateProperty.all(const TextStyle(color: Color(0xffEDA47E))),
-                      //           leading: const Icon(Icons.search,color: Color(0xffEDA47E), size: 30,),
-                      //           backgroundColor: MaterialStateProperty.all(const Color(0xffFAE5D2)),
-                      //           shadowColor: MaterialStateProperty.all(Colors.orange),
-                      //           shape: MaterialStateProperty.all(const ContinuousRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(20)),))
-                      //   ),
-                      // ),
-                      //SEARCH BAR
-
-
-
-                    ],
                   ),
-
-
-                ) ,//SEARCH & FILTER
-
-
-                Padding(
-                  padding: const EdgeInsets.only(left: 22,top: 375),
-                  child: SafeArea(child: Text("All Questions" , style: TextStyle(fontSize: 20 ,fontWeight: FontWeight.bold ),)),
                 ),
-
-              ]
-
+              ],
+            ),
           ),
 
 
 
-        )
+        );
 
 
 
 
 
-    );
+
 
 
   }

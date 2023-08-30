@@ -34,7 +34,8 @@ class _RegisterPage extends State<RegisterPage> {
         context: context,
         builder: (context){
           return AlertDialog(
-            title: Text("Please choose an options"),
+            title: Text("Please choose an options",style: TextStyle(color: Color(0xff242424),fontWeight: FontWeight.bold,fontSize:20),),
+            backgroundColor: Color(0xfff8e9c8),
             content: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
@@ -47,7 +48,7 @@ class _RegisterPage extends State<RegisterPage> {
                     child: Row(
                       children: [
                         Icon(Icons.camera,color:Colors.black),
-                        Text("Camera"),
+                        Text("Camera",),
                       ],
                     ),
                   ),
@@ -188,11 +189,11 @@ class _RegisterPage extends State<RegisterPage> {
       context: context,
       builder: (context){
         return AlertDialog(
-          backgroundColor: Colors.blue,
+          backgroundColor: Color(0xffdeecec),
           title:Center(
             child:  Text(
               message ,
-              style: const TextStyle(color: Colors.white),
+              style: const TextStyle(color: Color(0xff242424)),
             ),
           ),
         );
@@ -225,12 +226,23 @@ class _RegisterPage extends State<RegisterPage> {
 // '''
 
 
+  @override
+  void dispose() {
+    _emailController.dispose();
+    _passwordController.dispose();
+    confirmPasswordController.dispose();
+    _first_nameController.dispose();
+    _last_nameController.dispose();
+    _ageController.dispose();
+    _birth_soonController.dispose();
+    super.dispose();
+  }
 
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        backgroundColor: Color(0xffFCEFE3),
+        backgroundColor: Colors.white,
         body: SafeArea(
           child: Center(
             child: SingleChildScrollView(
@@ -240,10 +252,10 @@ class _RegisterPage extends State<RegisterPage> {
 
 
 
-                  const SizedBox(height: 15,),
+                  const SizedBox(height: 25,),
 
                   Text('Lets create an account for you!',
-                    style: TextStyle(color: Color(0xffEDA47E), fontWeight: FontWeight.w900 ,fontSize:20),
+                    style: TextStyle(color: Color(0xff242424), fontWeight: FontWeight.w900 ,fontSize:20),
                   ),
 
                   const SizedBox(height: 15,),
@@ -260,13 +272,13 @@ class _RegisterPage extends State<RegisterPage> {
                       decoration: BoxDecoration(
                           border: Border.all(
                               width: 4,
-                              color: Colors.white),
+                              color: Color(0xfff8e9c8)),
                           boxShadow: [
                             BoxShadow(
                                 spreadRadius: 2,
                                 blurRadius: 10,
-                                color: Colors.black.withOpacity(0.1),
-                                offset: Offset(0, 10))
+                                color: Colors.yellow.withOpacity(0.1),
+                                offset: Offset(0, 30))
                           ],
                           borderRadius: BorderRadius.circular(10),
 
@@ -297,20 +309,73 @@ class _RegisterPage extends State<RegisterPage> {
                     hintText: 'Last Name',
                     obscureText: false,),
 
-                  const SizedBox(height: 15,),
+                 SizedBox(height: 15,),
 
-                  MyTextField(controller: _ageController,
-                    hintText: 'Age',
-                    obscureText: false,),
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                    child: Column(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Row(
+                          children: [
+                            Expanded(
+                              child: TextField(
+                                controller: _ageController,
+                                obscureText: false,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.grey.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.cyan.shade200)),
+                                  fillColor: Color(0xffdeecec),
+                                  filled: true,
+                                  hintText: "Age",
+                                  hintStyle: TextStyle(
+                                      color: Color(0xff242424),
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                            ),
+                            SizedBox(width: 16.0), // Adding space between the text fields
+                            Expanded(
+                              child: TextField(
+                                controller: _birth_soonController,
+                                obscureText: false,
+                                keyboardType: TextInputType.number,
+                                decoration: InputDecoration(
+                                  enabledBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.grey.shade100)),
+                                  focusedBorder: OutlineInputBorder(
+                                      borderSide: BorderSide(color: Colors.cyan.shade200)),
+                                  fillColor: Color(0xffdeecec),
+                                  filled: true,
+                                  hintText: "Birth",
+                                  hintStyle: TextStyle(
+                                      color: Color(0xff242424),
+                                      fontWeight: FontWeight.normal),
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ],
+                    ),
+                  ),
 
-                  const SizedBox(height: 15,),
+
+                  // MyTextField(controller: _ageController,
+                  //   hintText: 'Age',
+                  //   obscureText: false,),
+                  //
+                  // const SizedBox(height: 15,),
+                  //
+                  //
+                  // MyTextField(controller: _birth_soonController,
+                  //   hintText: 'Birth Year',
+                  //   obscureText: false,),
 
 
-                  MyTextField(controller: _birth_soonController,
-                    hintText: 'Birth Year',
-                    obscureText: false,),
-
-                  const SizedBox(height: 15,),
+                 SizedBox(height: 15,),
 
                   //password
                   MyTextField(controller: _passwordController,
@@ -357,21 +422,21 @@ class _RegisterPage extends State<RegisterPage> {
                       Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Colors.white,
+                            color: Colors.cyan
                           )),
 
                       Padding(
                         padding: const EdgeInsets.symmetric(horizontal: 10.0),
                         child: Text(
                           'Or continue with',
-                          style: TextStyle(color: Color(0xffEDA47E), fontWeight: FontWeight.bold),
+                          style: TextStyle(color: Color(0xff242424), fontWeight: FontWeight.bold),
                         ),
                       ),
 
                       Expanded(
                           child: Divider(
                             thickness: 1,
-                            color: Colors.white,
+                            color: Colors.cyan,
                           )),
 
                     ],
@@ -402,9 +467,12 @@ class _RegisterPage extends State<RegisterPage> {
                       const SizedBox(width: 4,),
                       GestureDetector(
                           onTap: widget.onTap,
-                          child: Text('Log In now', style: TextStyle(color: Color(0xffEDA47E), fontWeight: FontWeight.bold),)),
+                          child: Text('Log In now', style: TextStyle(color: Color(0xff242424), fontWeight: FontWeight.bold),)),
                     ],
-                  )
+                  ),
+
+                  SizedBox(height: 25,),
+
                 ],
 
               ),

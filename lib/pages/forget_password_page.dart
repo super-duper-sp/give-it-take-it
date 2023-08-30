@@ -39,11 +39,11 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage > {
         context: context,
         builder: (context){
           return AlertDialog(
-            backgroundColor: Colors.blue,
+            backgroundColor: Color(0xffdeecec),
             title:Center(
               child:  Text(
                 e.message.toString() ,
-                style: const TextStyle(color: Colors.white),
+                style: const TextStyle(color: Color(0xff242424)),
               ),
             ),
           );
@@ -57,7 +57,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage > {
     return Scaffold(
 
       appBar: AppBar(
-        backgroundColor: Colors.deepOrangeAccent,
+        backgroundColor: Colors.black,
         elevation: 0,
       ),
       body: Column(
@@ -68,7 +68,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage > {
             child: Text(
               'Enter Your Email and we will send you a password reset link',
               textAlign: TextAlign.center,
-              style: TextStyle(fontSize: 20,color: Color(0xffEDA47E),fontWeight: FontWeight.bold),
+              style: TextStyle(fontSize: 20,color: Color(0xff242424),fontWeight: FontWeight.bold),
             ),
           ),
 
@@ -83,7 +83,7 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage > {
 
           MaterialButton(onPressed: passwordReset,
           child: Text('Reset Password', style: TextStyle(color: Colors.white,fontWeight: FontWeight.bold),),
-            color: Colors.orangeAccent,
+            color: Color(0xff242424),
           )
 
 

@@ -68,7 +68,7 @@ class _QuestionCardState extends State<QuestionCard> {
                         ),
                         shadows: [
                           BoxShadow(
-                            color: Color(0x194C4844),
+                            color: Color(0xfff8e9c8),
                             blurRadius: 64,
                             offset: Offset(0, 14),
                             spreadRadius: 0,

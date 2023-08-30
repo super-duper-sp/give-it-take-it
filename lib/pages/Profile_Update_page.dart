@@ -213,10 +213,23 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
     _getFieldDataFromDatabase();
     super.initState();
   }
+
+  @override
+  void dispose() {
+    // Dispose of the controllers to prevent memory leaks
+    bioController.dispose();
+    fnameController.dispose();
+    lnameController.dispose();
+    ageController.dispose();
+    birthController.dispose();
+
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color(0xffFCEFE3),
+      backgroundColor: Colors.white,
 
       body: SafeArea(
         child: Stack(
@@ -225,10 +238,19 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
             Container(
                 padding: EdgeInsets.only(right:5,bottom:5,top:5),
                 height: 70,
-                decoration: BoxDecoration(
-                  color: Color(0xffFFFFFF),
-                  borderRadius:  BorderRadius.all( Radius.circular(20),)
-                  ,
+                decoration: ShapeDecoration(
+                  color: Colors.white,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(16),
+                  ),
+                  shadows: [
+                    BoxShadow(
+                      color: Color(0xffdeecec),
+                      blurRadius: 1,
+                      offset: Offset(0, 2),
+                      spreadRadius: 1,
+                    )
+                  ],
                 ),
                 child:Row(
                   mainAxisAlignment: MainAxisAlignment.end,
@@ -236,7 +258,7 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
                     Text("EDIT PROFILE", style: TextStyle(
                       fontSize: 20.0,
                       fontWeight: FontWeight.bold,
-                      color: Color(0xff132D2F),
+                      color: Color(0xff242424),
                     )
                     ),
 
@@ -247,7 +269,7 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
                       height: 60,
                       width: 110,
                       decoration: BoxDecoration(
-                        color: Color(0xffFAE5D2),
+                        color: Color(0xff242424),
                         borderRadius:  BorderRadius.all(Radius.circular(20)
                         ),
                       ),
@@ -255,7 +277,7 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
 
                       child: ElevatedButton(
                         style: ElevatedButton.styleFrom(
-                            primary: Color(0xff132D2F),
+                            primary: Color(0xff242424),
                             shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20),),
                             textStyle: TextStyle(
                                 fontSize: 20,

@@ -30,29 +30,29 @@ class _AnswerQuestionState extends State<AnswerQuestion> with TickerProviderStat
     TabController _tabController =
         TabController( vsync: this ,length: 2);
     return  Scaffold(
-      backgroundColor: Color(0xffFCEFE3),
+      backgroundColor: Color(0xff242424),
           body: SingleChildScrollView(
-            child: Column(
-                children : [
-                  SafeArea(
-                    child: Container(
+            child: SafeArea(
+              child: Column(
+                  children : [
+                    Container(
                       child: TabBar(
 
-                          unselectedLabelColor: Color(0xff132D2F),
+                          unselectedLabelColor: Colors.grey,
                           indicatorSize: TabBarIndicatorSize.label,
                           indicator: BoxDecoration(
                               borderRadius: BorderRadius.circular(50),
-                              color: Color(0xff132D2F)),
+                              color: Colors.white),
                         controller: _tabController,
                           tabs: [
                                  Tab(
                                   child: Container(
                                   decoration: BoxDecoration(
                                   borderRadius: BorderRadius.circular(50),
-                                  border: Border.all(color: Color(0xff132D2F), width: 1)),
+                                  border: Border.all(color: Colors.white, width: 1)),
                                   child: Align(
                                    alignment: Alignment.center,
-                                   child: Text("Question",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                                   child: Text("Question",style: TextStyle( color: Colors.black ,fontSize: 20,fontWeight: FontWeight.bold),
                                    ),
                                   ),
                                   ),
@@ -62,10 +62,10 @@ class _AnswerQuestionState extends State<AnswerQuestion> with TickerProviderStat
                                  child: Container(
                                  decoration: BoxDecoration(
                                  borderRadius: BorderRadius.circular(50),
-                                 border: Border.all(color: Color(0xff132D2F), width: 1)),
+                                 border: Border.all(color: Colors.white, width: 1)),
                                  child: Align(
                                   alignment: Alignment.center,
-                                  child: Text("Answer",style: TextStyle(fontSize: 20,fontWeight: FontWeight.bold),
+                                  child: Text("Answer",style: TextStyle(color: Colors.black,fontSize: 20,fontWeight: FontWeight.bold),
                                  ),
                                  ),
                                  ),
@@ -73,26 +73,26 @@ class _AnswerQuestionState extends State<AnswerQuestion> with TickerProviderStat
                               ]
                       ),
                     ),
-                  ),
 
-                  Padding(
-                    padding: const EdgeInsets.only(top:20),
-                    child: Container(
-                         height: 710,
-                         child:  TabBarView(
-                           controller: _tabController,
-                           children:  [
+                    Padding(
+                      padding: const EdgeInsets.only(top: 8),
+                      child: Container(
+                           height: 750,
+                           child:  TabBarView(
+                             controller: _tabController,
+                             children:  [
 
-                             Container(child: AddQuestion()),
-                             Container(child: AddAnswer())
+                               Container(child: AddQuestion()),
+                               Container(child: AddAnswer())
 
-                           ],
+                             ],
 
-                         )
-                    ),
-                  )
+                           )
+                      ),
+                    )
     ]
       ),
+            ),
           ),
     );
 
