@@ -36,10 +36,15 @@ class QuestionDetailPage extends StatelessWidget {
                   String userGivenAnswer = questionData['Answer'];
                   String userId = questionData['UserId'];
 
+                  User? user = FirebaseAuth.instance.currentUser;
+                  String currentUserUid = user!.uid;
+                  bool isCurrentUserAuthor = currentUserUid == userId;
+
                   return Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Container(
-                        decoration: BoxDecoration(
+
+                      decoration: BoxDecoration(
                         color: Color(0xffF8F8F8),
                         borderRadius: BorderRadius.circular(10),
                        boxShadow: [
@@ -57,42 +62,39 @@ class QuestionDetailPage extends StatelessWidget {
                           children: [
 
                             SizedBox(height: 10,),
-                                Center(
-                                  child: Padding(
-                                    padding: const EdgeInsets.all(10.0),
-                                    child: Container(
-                                          //margin: EdgeInsets.only(left:10,right:10),
-                                          width: 400,
-                                          height: 70,
-                                        decoration: BoxDecoration(
-                                          color: Color(0xfff8e9c8),
-                                          borderRadius: BorderRadius.circular(10),
-                                          boxShadow: [
-                                            BoxShadow(
-                                              color: Color(0xffF8F8F8),
-                                              spreadRadius: 3,
-                                              blurRadius: 8,
-                                              offset: Offset(0, 2),
-                                            ),
-                                          ],
-                                        ),
-
-
-                                              child:Padding(
-                                                padding: const EdgeInsets.all(8.0),
-                                                  child: Center(
-                                                      child: Text(
-                                                  questionText ,
-                                                  textAlign: TextAlign.justify,
-                                                  overflow: TextOverflow.ellipsis,
-                                                  style: TextStyle(fontSize: 23.0,fontWeight: FontWeight.bold,color: Color(0xff242424)),
-                                                  maxLines: 3,
-                                                    ),
-                                                  ),
-                                             )
-                                     ),
+                            Padding(
+                              padding: const EdgeInsets.all(8.0),
+                              child: Container(
+                                  margin: EdgeInsets.all(4),
+                                  decoration: BoxDecoration(
+                                    color: Color(0xfff8e9c8),
+                                    borderRadius: BorderRadius.circular(10),
+                                    boxShadow: [
+                                      BoxShadow(
+                                        color: Color(0xffF8F8F8),
+                                        spreadRadius: 3,
+                                        blurRadius: 8,
+                                        offset: Offset(0, 2),
+                                      ),
+                                    ],
                                   ),
-                                ),
+
+
+                                  child:Padding(
+                                    padding: const EdgeInsets.all(8.0),
+                                    child: Center(
+                                      child: Text(
+                                        questionText,
+                                        textAlign: TextAlign.justify,
+
+                                        style: TextStyle(fontSize: 15.0,fontWeight: FontWeight.bold),
+                                       ),
+                                    ),
+                                  )
+                              ),
+                            ),
+
+
 
 
 
@@ -153,6 +155,57 @@ class QuestionDetailPage extends StatelessWidget {
                                         ),
                                       ),
                                     ),
+
+                                    Row(
+                                      mainAxisAlignment: MainAxisAlignment.end,
+                                      children: [
+
+
+
+                                    if (isCurrentUserAuthor)
+                                        IconButton(
+                                          icon: Icon(Icons.edit),
+                                          onPressed: () {
+                                            // Show the edit answer dialog
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) {
+                                                String newAnswer = userGivenAnswer; // Initialize with current answer text
+
+                                                return AlertDialog(
+                                                  title: Text('Edit Answer'),
+                                                  content: TextField(
+                                                    controller: TextEditingController(text: userGivenAnswer),
+                                                    onChanged: (value) {
+                                                      newAnswer = value;
+                                                    },
+                                                  ),
+                                                  actions: [
+                                                    TextButton(
+                                                      onPressed: () {
+                                                        Navigator.of(context).pop(); // Close the dialog
+                                                      },
+                                                      child: Text('Cancel'),
+                                                    ),
+                                                    TextButton(
+                                                      onPressed: () async {
+                                                        // Update the answer and close the dialog
+                                                        await FirebaseFirestore.instance.collection('All Questions').doc(questionId).update({
+                                                          'Answer': newAnswer,
+                                                        });
+                                                        Navigator.of(context).pop(); // Close the dialog
+                                                      },
+                                                      child: Text('Update'),
+                                                    ),
+                                                  ],
+                                                );
+                                              },
+                                            );
+                                          },
+                                        ),
+                                      ],
+                                    )
+
                                   ],
                                 ),
                               ),
@@ -242,7 +295,9 @@ class QuestionDetailPage extends StatelessWidget {
                       User? user = FirebaseAuth.instance.currentUser;
                       String currentUserUid = user!.uid;
 
-
+                      // Check if the current user is the author of the answer
+                      bool isCurrentUserAuthor = currentUserUid == UserIdText;
+                      if (isCurrentUserAuthor)
 
                      return Card(
                        elevation: 5,
@@ -344,9 +399,94 @@ class QuestionDetailPage extends StatelessWidget {
                                ),
                              ),
                            ),
+
+
+                           if (isCurrentUserAuthor)
+                             Row(
+                               mainAxisAlignment: MainAxisAlignment.end,
+                               children: [
+                                 IconButton(
+                                   icon: Icon(Icons.delete),
+                                   onPressed: () {
+                                     // Show a confirmation dialog
+                                     showDialog(
+                                       context: context,
+                                       builder: (BuildContext context) {
+                                         return AlertDialog(
+                                           title: Text('Delete Answer'),
+                                           content: Text('Are you sure you want to delete this answer that you answered?'),
+                                           actions: [
+                                             TextButton(
+                                               onPressed: () {
+                                                 Navigator.of(context).pop(); // Close the dialog
+                                               },
+                                               child: Text('Cancel'),
+                                             ),
+                                             TextButton(
+                                               onPressed: () async {
+                                                 // Delete the answer and close the dialog
+                                                 await FirebaseFirestore.instance.collection('All Answers').doc(answerId).delete();
+                                                 Navigator.of(context).pop(); // Close the dialog
+                                               },
+                                               child: Text('Delete'),
+                                             ),
+                                           ],
+                                         );
+                                       },
+                                     );
+                                   },
+                                 ),
+                                 IconButton(
+                                   icon: Icon(Icons.edit),
+                                   onPressed: () {
+                                     // Show the edit answer dialog
+                                     showDialog(
+                                       context: context,
+                                       builder: (BuildContext context) {
+                                         String newAnswer = answerText; // Initialize with current answer text
+
+                                         return AlertDialog(
+                                           title: Text('Edit Answer'),
+                                           content: TextField(
+                                             controller: TextEditingController(text: answerText),
+                                             onChanged: (value) {
+                                               newAnswer = value;
+                                             },
+                                           ),
+                                           actions: [
+                                             TextButton(
+                                               onPressed: () {
+                                                 Navigator.of(context).pop(); // Close the dialog
+                                               },
+                                               child: Text('Cancel'),
+                                             ),
+                                             TextButton(
+                                               onPressed: () async {
+                                                 // Update the answer and close the dialog
+                                                 await FirebaseFirestore.instance.collection('All Answers').doc(answerId).update({
+                                                   'Answer': newAnswer,
+                                                 });
+                                                 Navigator.of(context).pop(); // Close the dialog
+                                               },
+                                               child: Text('Update'),
+                                             ),
+                                           ],
+                                         );
+                                       },
+                                     );
+                                   },
+                                 ),
+
+                               ],
+                             ),
+
+
+
+
                          ],
                        ),
                      );
+
                     },
                   );
                 } else {

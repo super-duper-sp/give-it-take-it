@@ -69,7 +69,24 @@ class CategoryCards extends StatelessWidget {
                   alignment: Alignment.center,
                   child: Padding(
                     padding: const EdgeInsets.only(top: 60),
-                    child: Text(categoryName! ,style: TextStyle(color: Colors.white,fontSize: 20, fontWeight:FontWeight.bold),textAlign: TextAlign.center),
+                  //   child: Text(categoryName! ,style: TextStyle(color: Colors.white,fontSize: 20, fontWeight:FontWeight.bold),textAlign: TextAlign.center),
+                    child: Text(
+                      categoryName!,
+                    textAlign: TextAlign.center,
+                      style: TextStyle(
+                        fontSize: 20,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        shadows: [
+                          Shadow(
+                            offset: Offset(4, 4),
+                            blurRadius: 60, // Adjust the blur radius to control the intensity of the shadow
+                            color: Colors.black,
+                          ),
+                        ],
+
+                      ),
+                    ),
                   ),
                   decoration:  BoxDecoration(
                     border: Border.all(width: 6, color: Colors.yellow),

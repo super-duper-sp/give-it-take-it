@@ -84,7 +84,7 @@ class _QuestionCardState extends State<QuestionCard> {
                             data['Question'],
                             textAlign: TextAlign.justify,
                             overflow: TextOverflow.ellipsis,
-                            style: TextStyle(fontSize: 20.0,fontWeight: FontWeight.bold),
+                            style: TextStyle(fontSize: 15.0,fontWeight: FontWeight.bold),
                             maxLines: 3,),
                         ),
                       )

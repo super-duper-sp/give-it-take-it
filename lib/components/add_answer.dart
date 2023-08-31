@@ -151,6 +151,9 @@ class _AddAnswerState extends State<AddAnswer> {
                   ),
                 ),
               ),
+
+              SizedBox(height: 300,),
+
             ],
           ),
         ),

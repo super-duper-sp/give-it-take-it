@@ -212,7 +212,7 @@ class _AddQuestionState extends State<AddQuestion> {
                   onTap: addall,
                     ),
 
-
+                  SizedBox(height: 300,),
 
                 ],
             )
