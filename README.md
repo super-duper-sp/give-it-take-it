@@ -82,7 +82,8 @@ Using Give It Take It is a breeze:
 ## Ready to join the knowledge-sharing journey?
 
 <p align="center">
-  Download and install the app.
+  
+  Download and install the app. (soon link will be display here)
 
 
 </p>
