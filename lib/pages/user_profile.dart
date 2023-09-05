@@ -414,10 +414,10 @@ class _UserProfileState extends State<UserProfile> {
                                           padding: const EdgeInsets.all(8.0),
                                           child: Text(
                                             bio!,
-                                            textAlign: TextAlign.justify,
-                                            overflow: TextOverflow.ellipsis,
-                                            style: TextStyle(fontSize: 14.0,color: Colors.grey,fontWeight: FontWeight.bold),
-                                            maxLines: 5,
+                                            //textAlign: TextAlign.justify,
+                                           // overflow: TextOverflow.ellipsis,
+                                            style: TextStyle(fontSize: 12.0,color: Colors.grey,fontWeight: FontWeight.bold),
+                                            maxLines: 7,
                                             ),
                                         )
                                     ),

@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:giveit_takeit/pages/auth_page.dart';
 import 'package:giveit_takeit/pages/log_or_register_page.dart';
 
@@ -27,7 +28,25 @@ class _SplashScreenState extends State<SplashScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
-        child: Image.asset('assets/images/logo.gif'), // Use your GIF asset path
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: <Widget>[
+            // Display the animated SVG (GIF)
+            SvgPicture.asset(
+              'assets/images/log.gif', // Replace with your GIF file
+              width: 150,
+              height: 150,
+            ),
+            SizedBox(height: 20),
+            Text(
+              'Give It,Take It',
+              style: TextStyle(
+                fontSize: 24,
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

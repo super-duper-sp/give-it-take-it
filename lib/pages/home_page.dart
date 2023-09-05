@@ -20,14 +20,14 @@ class _HomePageState extends State<HomePage> {
   final user = FirebaseAuth.instance.currentUser!;
 
 
-  var PagesAll =[ LandingPage(),AnswerQuestion(),UserProfile()];
+  var PagesAll =[ AnswerQuestion(),LandingPage(), UserProfile()];
 
 
   void signUserOut() {
     FirebaseAuth.instance.signOut();
   }
 
-  int my_index = 1;
+  int my_index = 0;
 
 
 
@@ -46,13 +46,13 @@ class _HomePageState extends State<HomePage> {
       extendBody: true,
       bottomNavigationBar: CircleNavBar(
         activeIcons: const [
-          Icon(Icons.home, color: Color(0xfff8e9c8)),
           Icon(Icons.keyboard_double_arrow_up_outlined, color: Colors.white),
+          Icon(Icons.home, color: Color(0xfff8e9c8)),
           Icon(Icons.person, color: Color(0xffdeecec)),
         ],
         inactiveIcons: const [
-          Text("Home",style: TextStyle(fontSize: 15,color: Color(0xfff8e9c8),fontWeight: FontWeight.bold),),
           Text("Q/A",style: TextStyle(fontSize: 15,color: Colors.white,fontWeight: FontWeight.bold),),
+          Text("Home",style: TextStyle(fontSize: 15,color: Color(0xfff8e9c8),fontWeight: FontWeight.bold),),
           Text("Me",style: TextStyle(fontSize: 15,color: Color(0xffdeecec), fontWeight: FontWeight.bold),),
         ],
         color: Color(0xff242424),

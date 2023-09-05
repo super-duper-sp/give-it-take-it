@@ -6,6 +6,7 @@ import 'package:giveit_takeit/components/square_tile.dart';
 import 'package:giveit_takeit/services/auth_service.dart';
 
 import 'forget_password_page.dart';
+import 'home_page.dart';
 
 class LoginPage extends StatefulWidget {
   final Function()? onTap;
@@ -26,42 +27,39 @@ class _LoginPageState extends State<LoginPage> {
   // final _ageController = TextEditingController();
   // final _birth_soonController = TextEditingController();
 
-  //sign in user method
   void signUserIn() async {
-
-        //show loading  circle
-
-    showDialog (
-            context: context ,
-            builder: (context) {
-              return const Center(
-                child: CircularProgressIndicator(),
-              );
-            },
+    // Show a loading indicator
+    showDialog(
+      context: context,
+      builder: (context) {
+        return const Center(
+          child: CircularProgressIndicator(),
+        );
+      },
     );
 
-
-        //try sign in
     try {
       await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _emailController.text,
-          password: _passwordController.text);
+        email: _emailController.text,
+        password: _passwordController.text,
+      );
 
-      //pop the loading circle
+      // Pop the loading indicator
       Navigator.pop(context);
 
-    }
-    on FirebaseAuthException catch(e){
-
-      //pop the loading circle
+      // Navigate to the main content after successful sign-in
+      Navigator.of(context).pushReplacement(
+        MaterialPageRoute(builder: (context) => HomePage()),
+      );
+    } catch (e) {
+      // Pop the loading indicator
       Navigator.pop(context);
 
-      //show error message
-
-      showErrorMessage(e.code);
+      // Show an error message to the user
+      showErrorMessage(e.toString());
     }
-
   }
+
 
   //error message to user 
   showErrorMessage(String message) {
@@ -131,7 +129,7 @@ class _LoginPageState extends State<LoginPage> {
                     decoration: BoxDecoration(
                       image: DecorationImage(
                         image: AssetImage(
-                            'assets/images/logo.gif'),
+                            'assets/images/log.gif'),
                         fit: BoxFit.fill,
                       ),
 

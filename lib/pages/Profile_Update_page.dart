@@ -203,6 +203,14 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
           birth  = snapshot.data()!["birth"];
           bio =snapshot.data()!["bio"];
           image =snapshot.data()!["userImage"];
+          final existingBio = bio?? ''; // Get the existing bio or an empty string if it doesn't exist
+          setState(() {
+            bioController.text = existingBio;
+            fnameController.text = fname;
+            lnameController.text = lname;
+            ageController.text = age;
+            birthController.text = birth;
+          });
 
         });
       }
@@ -357,25 +365,25 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
 
                       const SizedBox(height: 15,),
                       MyTextField(controller: fnameController,
-                        hintText: '$fname',
+                        hintText: 'First Name',
                         obscureText: false,),
 
                       const SizedBox(height: 15,),
 
                       MyTextField(controller: lnameController,
-                        hintText: '$lname',
+                        hintText: 'Last Name',
                         obscureText: false,),
 
                       const SizedBox(height: 15,),
 
                       MyTextField(controller: ageController,
-                        hintText: '$age',
+                        hintText: 'Age',
                         obscureText: false,),
 
                       const SizedBox(height: 15,),
 
                       MyTextField(controller: birthController,
-                        hintText: '$birth',
+                        hintText: 'Birth Year',
                         obscureText: false,),
 
                       const SizedBox(height: 25
@@ -393,7 +401,8 @@ class _UserProfileUpdateState extends State<UserProfileUpdate> {
                         onTap: updateUserProfile ,
                       ),
 
-
+                      const SizedBox(height: 25
+                        ,),
 
                         ],
 
