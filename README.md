@@ -80,13 +80,21 @@ Using Give It Take It is a breeze:
 
 ## Getting Started
 ## Ready to join the knowledge-sharing journey?
-
+<div>
 <p align="center">
-  
-  Download and install the app. (soon link will be display here)
-
-
+  <b>Download and install the app.</b> 
 </p>
+<div align="center"><img src="https://i.imgur.com/TsJ6t6Y.gif" alt="Alt Text" width="200" />
+</div>
+  <p align="center">
+ <b>OR</b>
+</p>
+<p align="center">
+  <b>click here: <a href="https://drive.google.com/file/d/1bROdBTwVq6Pr5l1xRyjPOznUms97GU2k/view?usp=sharing">Download</a></b>
+</p>
+
+</div>
+
 
     
 
